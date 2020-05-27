@@ -1,0 +1,13 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: exam-ym
+  datasource:
+    url: jdbc:mysql://rm-2zes451o6jjl0md7ooo.mysql.rds.aliyuncs.com:3306/exam_ym?serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ym
+    password: testdata
+mybatis:
+  type-aliases-package: com.exam_ym.mapper.entity
+  mapper-locations: classpath*:mapper/*Dao.xml

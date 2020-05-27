@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exam_ym.mapper.dao.QuestionDao">
+
+    <resultMap type="com.exam_ym.mapper.entity.Question" id="QuestionMap">
+        <result property="qid" column="qid" jdbcType="INTEGER"/>
+        <result property="question" column="question" jdbcType="VARCHAR"/>
+        <result property="correctanswer" column="correctAnswer" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="sortnum" column="sortnum" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="selectAllMap">
+        select * from  question where status=1 order by sortnum
+    </select>
+
+    <select id="selectAlls" resultMap="selectAllMap">
+        select * from  question where status=1 order by sortnum
+    </select>
+
+    <resultMap id="selectAllMap" type="com.exam_ym.mapper.entity.Question">
+        <result property="qid" column="qid" jdbcType="INTEGER"/>
+        <result property="question" column="question" jdbcType="VARCHAR"/>
+        <result property="correctanswer" column="correctAnswer" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="sortnum" column="sortnum" jdbcType="INTEGER"/>
+
+        <collection property="answers" column="qid" select="selectAnswers" ofType="string">
+
+        </collection>
+    </resultMap>
+
+    <select id="selectAnswers" resultType="string">
+        select answer from answers where status=1 and qid=#{qid} order by sortnum
+    </select>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="QuestionMap">
+        select
+          qid, question, correctAnswer, status, sortnum
+        from exam_ym.question
+        where qid = #{qid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="QuestionMap">
+        select
+          qid, question, correctAnswer, status, sortnum
+        from exam_ym.question
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="QuestionMap">
+        select
+          qid, question, correctAnswer, status, sortnum
+        from exam_ym.question
+        <where>
+            <if test="qid != null">
+                and qid = #{qid}
+            </if>
+            <if test="question != null and question != ''">
+                and question = #{question}
+            </if>
+            <if test="correctanswer != null">
+                and correctAnswer = #{correctanswer}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="sortnum != null">
+                and sortnum = #{sortnum}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="qid" useGeneratedKeys="true">
+        insert into exam_ym.question(question, correctAnswer, status, sortnum)
+        values (#{question}, #{correctanswer}, #{status}, #{sortnum})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update exam_ym.question
+        <set>
+            <if test="question != null and question != ''">
+                question = #{question},
+            </if>
+            <if test="correctanswer != null">
+                correctAnswer = #{correctanswer},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="sortnum != null">
+                sortnum = #{sortnum},
+            </if>
+        </set>
+        where qid = #{qid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from exam_ym.question where qid = #{qid}
+    </delete>
+
+</mapper>
