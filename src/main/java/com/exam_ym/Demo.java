@@ -12,7 +12,7 @@ public class Demo {
         System.out.println("nihoa");
         System.out.println("haha");
         System.out.println("hahaha");
-        System.out.println("hahahhs");
+        System.out.println("再见");
         System.out.println("alkghlakgn");
     }
 }
