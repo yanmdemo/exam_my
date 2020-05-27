@@ -10,12 +10,9 @@ package com.exam_ym;
 public class Demo {
     public static void get(){
         System.out.println("nihoa");
-        System.out.println("haha");
-        System.out.println("hahaha");
         System.out.println("nihoa");
-        System.out.println("alkghlakgn");
-        System.out.println("alkghlakgn");
-        System.out.println("alkghlakgn");
-
+        System.out.println("奖赏");
+        System.out.println("zia");
+        System.out.println("zia");
     }
 }
