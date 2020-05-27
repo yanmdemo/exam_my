@@ -11,7 +11,8 @@ public class Demo {
     public static void get(){
         System.out.println("nihoa");
         System.out.println("nihoa");
-        System.out.println("再见");
+        System.out.println("奖赏");
+        System.out.println("zia");
         System.out.println("zia");
     }
 }
