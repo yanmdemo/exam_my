@@ -12,5 +12,6 @@ public class Demo {
         System.out.println("nihoa");
         System.out.println("nihoa");
         System.out.println("再见");
+        System.out.println("zia");
     }
 }
