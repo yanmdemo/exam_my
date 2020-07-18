@@ -33,6 +33,7 @@ public class ToIndexController {
 
         map.put("questions",questions);
         System.out.println(questions);
+        System.out.println("ccc");
 
         return map;
     }
